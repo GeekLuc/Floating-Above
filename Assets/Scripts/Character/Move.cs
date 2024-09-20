@@ -11,42 +11,43 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float jumpForce = 5f;
+    public float friction = 0.9f; // Friction pour ralentir le personnage
     private Rigidbody rb;
-    private bool isGrounded;
+    private bool facingRight = true; // Indique si le personnage fait face à droite
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         float moveInput = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector3(moveInput * moveSpeed, rb.velocity.y, rb.velocity.z);
+        Vector3 move = new Vector3(moveInput * moveSpeed, rb.velocity.y, 0);
+        rb.velocity = new Vector3(move.x, rb.velocity.y, 0);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        // Appliquer la friction pour ralentir le personnage progressivement
+        if (moveInput == 0)
         {
-            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+            rb.velocity = new Vector3(rb.velocity.x * friction, rb.velocity.y, 0);
+        }
+
+        // Retourner le personnage en fonction de la direction du mouvement
+        if (moveInput > 0 && !facingRight)
+        {
+            Flip();
+        }
+        else if (moveInput < 0 && facingRight)
+        {
+            Flip();
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void Flip()
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
+        facingRight = !facingRight;
+        Vector3 scaler = transform.localScale;
+        scaler.x *= -1;
+        transform.localScale = scaler;
     }
 }
-
