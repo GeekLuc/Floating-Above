@@ -31,7 +31,7 @@ public class Ballon : MonoBehaviour
     public bool isFlying = false;
     private bool hasReachedMaxHeight = false;
     private Coroutine flyCoroutine;
-    private Coroutine fallCoroutine;
+    public Coroutine fallCoroutine;
     private float lastInflateTime = 0f;
 
     void Update(){
@@ -81,8 +81,10 @@ public class Ballon : MonoBehaviour
         // TODO: Ajouter des animations ou VFX pour le dégonflage
     }
 
-    private IEnumerator FallVertically(){
-        while (!isTouchingGround){
+    public IEnumerator FallVertically() // Rendre public
+    {
+        while (!isTouchingGround)
+        {
             transform.position += Vector3.down * emptyFallSpeed * Time.deltaTime;
             yield return null;
         }
@@ -168,8 +170,10 @@ public class Ballon : MonoBehaviour
         }
     }
 
-    private void StopFlying(){
-        if (flyCoroutine != null){
+    public void StopFlying() // Rendre public
+    {
+        if (flyCoroutine != null)
+        {
             StopCoroutine(flyCoroutine);
             flyCoroutine = null;
         }
