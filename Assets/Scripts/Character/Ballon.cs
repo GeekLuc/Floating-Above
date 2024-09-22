@@ -19,8 +19,13 @@ public class Ballon : MonoBehaviour
     public float arcDuration; // Durée pour compléter l'arc de cercle
     public float DelayBallon; // Temps de repos avant que le ballon commence à se dégonfler
 
+    public KeyCode GonflerBallon = KeyCode.Space; // Touche pour gonfler
+    public KeyCode GarderAir = KeyCode.B; // Touche pour dégonfler lentement
+    public KeyCode Descendre = KeyCode.V; // Touche pour dégonfler rapidement
+
     private float currentScaleTime = 0f;
-    public float ScaleTime{
+    public float ScaleTime
+    {
         get { return currentScaleTime; }
         private set { currentScaleTime = Mathf.Max(0f, value); }
     }
@@ -34,30 +39,39 @@ public class Ballon : MonoBehaviour
     public Coroutine fallCoroutine;
     private float lastInflateTime = 0f;
 
-    void Update(){
+    void Update()
+    {
         HandleInput();
         UpdateScale();
         wasInflating = isInflating;
     }
 
-    private void HandleInput(){
-        if (isTouchingGround && Input.GetKey(KeyCode.Space)){
+    private void HandleInput()
+    {
+        if (isTouchingGround && Input.GetKey(GonflerBallon))
+        {
             Inflate();
-        }else if (!Input.GetKey(KeyCode.Space)){
+        }
+        else if (!Input.GetKey(GonflerBallon))
+        {
             HandleDeflation();
-            if (wasInflating && !hasReachedMaxHeight && !isFlying){
+            if (wasInflating && !hasReachedMaxHeight && !isFlying)
+            {
                 Fly();
             }
         }
     }
 
-    private void HandleDeflation(){
-        if (Time.time - lastInflateTime >= DelayBallon){
-            Deflate(Input.GetKey(KeyCode.B) ? slowDeflateMultiplier : fastDeflateMultiplier);
+    private void HandleDeflation()
+    {
+        if (Time.time - lastInflateTime >= DelayBallon)
+        {
+            Deflate(Input.GetKey(GarderAir) ? slowDeflateMultiplier : fastDeflateMultiplier);
         }
     }
 
-    private void Inflate(){
+    private void Inflate()
+    {
         isInflating = true;
         ScaleTime += Time.deltaTime;
         lastInflateTime = Time.time;
@@ -65,16 +79,21 @@ public class Ballon : MonoBehaviour
         // TODO: Ajouter des animations ou VFX pour l'inflation
     }
 
-    private void Deflate(float deflateMultiplier){
+    private void Deflate(float deflateMultiplier)
+    {
         isInflating = false;
         ScaleTime -= Time.deltaTime * deflateMultiplier;
 
-        if (ScaleTime == 0){
+        if (ScaleTime == 0)
+        {
             StopFlying();
-            if (fallCoroutine == null){
+            if (fallCoroutine == null)
+            {
                 fallCoroutine = StartCoroutine(FallVertically());
             }
-        }else if (Input.GetKey(KeyCode.B)){
+        }
+        else if (Input.GetKey(GarderAir))
+        {
             transform.position += Vector3.down * fallSpeedEnBallon * deflateMultiplier * Time.deltaTime;
         }
         // Intégration des VFX
@@ -91,15 +110,19 @@ public class Ballon : MonoBehaviour
         fallCoroutine = null;
     }
 
-    private void Fly(){
-        if (!isFlying){
+    private void Fly()
+    {
+        if (!isFlying)
+        {
             isFlying = true;
             flyCoroutine = StartCoroutine(FlyCoroutine());
         }
     }
 
-    private IEnumerator FlyCoroutine(){
-        while (true){
+    private IEnumerator FlyCoroutine()
+    {
+        while (true)
+        {
             yield return FlyArc(transform.position, ScaleTime);
             hasReachedMaxHeight = true;
             yield return new WaitForSeconds(DelayBallon);
@@ -107,17 +130,22 @@ public class Ballon : MonoBehaviour
         }
     }
 
-    private IEnumerator FlyArc(Vector3 startPosition, float remainingScaleTime){
+    private IEnumerator FlyArc(Vector3 startPosition, float remainingScaleTime)
+    {
         float startTime = Time.time;
         float inflatePercentage = Mathf.Clamp01(remainingScaleTime / inflateTime);
         float adjustedTargetHeight = HauteurMax * inflatePercentage;
         float adjustedHorizontalForce = horizontalForce * inflatePercentage;
         float adjustedArcDuration = arcDuration * inflatePercentage;
 
-        while (Time.time - startTime < adjustedArcDuration && ScaleTime > 0){
-            if (Input.GetKey(KeyCode.V)){
+        while (Time.time - startTime < adjustedArcDuration && ScaleTime > 0)
+        {
+            if (Input.GetKey(Descendre))
+            {
                 transform.position += Vector3.down * emptyFallSpeed * Time.deltaTime;
-            }else{
+            }
+            else
+            {
                 float t = (Time.time - startTime) / adjustedArcDuration;
                 float height = Mathf.Sin(Mathf.PI * t) * adjustedTargetHeight;
                 float horizontal = t * adjustedHorizontalForce * adjustedArcDuration;
@@ -127,15 +155,21 @@ public class Ballon : MonoBehaviour
         }
     }
 
-    private IEnumerator CheckFall(){
-        while (true){
-            if (ScaleTime == 0 && !isFlying){
+    private IEnumerator CheckFall()
+    {
+        while (true)
+        {
+            if (ScaleTime == 0 && !isFlying)
+            {
                 yield break;
             }
 
-            if (Input.GetKey(KeyCode.V)){
+            if (Input.GetKey(Descendre))
+            {
                 transform.position += Vector3.down * emptyFallSpeed * Time.deltaTime;
-            }else if (Input.GetKeyUp(KeyCode.V)){
+            }
+            else if (Input.GetKeyUp(Descendre))
+            {
                 StopFlying();
                 Fly();
             }
@@ -143,7 +177,8 @@ public class Ballon : MonoBehaviour
         }
     }
 
-    private void UpdateScale(){
+    private void UpdateScale()
+    {
         ScaleTime = Mathf.Clamp(ScaleTime, 0f, inflateTime);
         float scaleProgress = Mathf.Clamp01(ScaleTime / inflateTime);
         float newScale = Mathf.Lerp(0f, maxScale, scaleProgress);
@@ -152,20 +187,25 @@ public class Ballon : MonoBehaviour
         // TODO: Ajouter des animations ou VFX pour la mise à jour de l'échelle
     }
 
-    private void OnCollisionEnter(Collision collision){
-        if (collision.gameObject.CompareTag("Ground")){
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
             isTouchingGround = true;
             hasReachedMaxHeight = false;
             StopFlying();
-            if (fallCoroutine != null){
+            if (fallCoroutine != null)
+            {
                 StopCoroutine(fallCoroutine);
                 fallCoroutine = null;
             }
         }
     }
 
-    private void OnCollisionExit(Collision collision){
-        if (collision.gameObject.CompareTag("Ground")){
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
             isTouchingGround = false;
         }
     }
@@ -180,4 +220,3 @@ public class Ballon : MonoBehaviour
         isFlying = false;
     }
 }
-

@@ -130519,6 +130519,9 @@ MonoBehaviour:
   emptyFallSpeed: 25
   arcDuration: 7
   DelayBallon: 1.5
+  GonflerBallon: 32
+  GarderAir: 114
+  Descendre: 116
   isFlying: 0
 --- !u!136 &1908798432
 CapsuleCollider:
