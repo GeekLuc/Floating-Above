@@ -16,8 +16,6 @@ public class SnowStorm : MonoBehaviour
     float _fullTextureValue = 1f;
     float _noTextureValue = 0f;
     float _currentTextureValue;
-    float _fullSkyValue = 1f;
-    float _noSkyValue = 0f;
     float _currentSkyValue;
 
 
