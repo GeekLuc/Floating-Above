@@ -1,36 +1,54 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+// Rougefort Luca B3JV1 Prog
+// Dammage.cs
+// GameJam rentrée 2024-2025
 
-/*
-    GameJam 2024-2025 - Team 3
-    SliderScript.cs
-    Rougefort Luca B3JV1
-*/
+using UnityEngine;
 
 public class Dammage : MonoBehaviour{
     private LifeBar lifeBar;
 
     void Start(){
-        GameObject lifeBarObject = GameObject.Find("LifeBar");
-        if (lifeBarObject != null){
-            lifeBar = lifeBarObject.GetComponent<LifeBar>();
-            if (lifeBar == null)
-            {
-                Debug.LogError("Le script LifeBar n'est pas trouvé sur l'objet: " + lifeBarObject.name);
-            }
-        }else{
-            Debug.LogError("L'objet LifeBar n'est pas trouvé dans la scène.");
-        }
+        lifeBar = FindLifeBar();
     }
 
     void OnTriggerEnter(Collider collision){
         if (collision.gameObject.CompareTag("Player")){
-            if (lifeBar != null){
-                lifeBar.Damage();
-            }else{
-                Debug.LogError("Le script LifeBar n'est pas trouvé sur l'objet LifeBar.");
-            }
+            HandlePlayerCollision();
         }
     }
+
+    private void HandlePlayerCollision(){
+        if (lifeBar != null){
+            lifeBar.Damage();
+            PlayDamageSound();
+            PlayDamageVFX();
+        }else{
+            Debug.LogError("Le script LifeBar n'est pas trouvé sur l'objet LifeBar.");
+        }
+    }
+
+    private LifeBar FindLifeBar(){
+        GameObject lifeBarObject = GameObject.Find("LifeBar");
+        if (lifeBarObject != null){
+            LifeBar lb = lifeBarObject.GetComponent<LifeBar>();
+            if (lb == null){
+                Debug.LogError("Le script LifeBar n'est pas trouvé sur l'objet: " + lifeBarObject.name);
+            }
+            return lb;
+        }else{
+            Debug.LogError("L'objet LifeBar n'est pas trouvé dans la scène.");
+            return null;
+        }
+    }
+
+    private void PlayDamageSound(){
+        // Intégration des sons
+        // TODO: Ajouter le code pour jouer un son de dommage
+    }
+
+    private void PlayDamageVFX(){
+        // Intégration des VFX
+        // TODO: Ajouter le code pour jouer un effet visuel de dommage
+    }
 }
+

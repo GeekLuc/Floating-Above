@@ -1,53 +1,68 @@
+// Rougefort Luca B3JV1 Prog
+// Move.cs
+// GameJam rentrée 2024-2025
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
-    GameJam 2024-2025 - Team 3
-    ButtonScript.cs
-    Rougefort Luca B3JV1
-*/
-
-public class Move : MonoBehaviour
-{
-    public float moveSpeed = 5f;
+public class Move : MonoBehaviour{
+    public float moveSpeed = 5f; // Vitesse de déplacement du personnage
     public float friction = 0.9f; // Friction pour ralentir le personnage
     private Rigidbody rb;
-    private bool facingRight = true; // Indique si le personnage fait face à droite
+    private bool facingRight = true;
+    private Ballon ballon;
 
-    void Start()
-    {
+    void Start(){
         rb = GetComponent<Rigidbody>();
+        ballon = GetComponent<Ballon>();
     }
 
-    void Update()
-    {
+    void Update(){
+        if (IsBallonFlying()){
+            return;
+        }
+
+        HandleMovement();
+        ApplyFriction();
+        HandleFlip();
+    }
+
+    private bool IsBallonFlying(){
+        return ballon != null && ballon.isFlying;
+    }
+
+    private void HandleMovement(){
         float moveInput = Input.GetAxis("Horizontal");
         Vector3 move = new Vector3(moveInput * moveSpeed, rb.velocity.y, 0);
         rb.velocity = new Vector3(move.x, rb.velocity.y, 0);
+    }
 
-        // Appliquer la friction pour ralentir le personnage progressivement
-        if (moveInput == 0)
-        {
+    private void ApplyFriction(){
+        if (Input.GetAxis("Horizontal") == 0){
             rb.velocity = new Vector3(rb.velocity.x * friction, rb.velocity.y, 0);
         }
+    }
 
-        // Retourner le personnage en fonction de la direction du mouvement
-        if (moveInput > 0 && !facingRight)
-        {
+    private void HandleFlip(){
+        float moveInput = Input.GetAxis("Horizontal");
+        if (moveInput > 0 && !facingRight){
             Flip();
-        }
-        else if (moveInput < 0 && facingRight)
-        {
+        }else if (moveInput < 0 && facingRight){
             Flip();
         }
     }
 
-    void Flip()
-    {
+    private void Flip(){
         facingRight = !facingRight;
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
+
+        // Intégration des sons
+        // TODO: Ajouter le code pour jouer un son de retournement
+
+        // Intégration des VFX
+        // TODO: Ajouter le code pour jouer un effet visuel de retournement
     }
 }

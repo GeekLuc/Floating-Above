@@ -1,12 +1,10 @@
+// Rougefort Luca B3JV1 Prog
+// Oiseau.cs
+// GameJam rentrée 2024-2025
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-/*
-    GameJam 2024-2025 - Team 3
-    SliderScript.cs
-    Rougefort Luca B3JV1
-*/
 
 public class Oiseau : MonoBehaviour{
     public float vitesse = 5.0f;
@@ -17,17 +15,53 @@ public class Oiseau : MonoBehaviour{
     private float startY;
 
     void Start(){
-        startY = transform.position.y;
+        InitializeStartY();
     }
 
     void Update(){
+        MoveOiseau();
+        UpdateVerticalPosition();
+        CheckAndDestroyOiseau();
+    }
+
+    private void InitializeStartY(){
+        startY = transform.position.y;
+    }
+
+    private void MoveOiseau(){
         transform.Translate(Vector3.left * vitesse * Time.deltaTime);
+    }
 
-        float newY = startY + Mathf.Sin(Time.time * frequence) * amplitude;
+    private void UpdateVerticalPosition(){
+        float newY = CalculateNewYPosition();
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+    }
 
+    private float CalculateNewYPosition(){
+        return startY + Mathf.Sin(Time.time * frequence) * amplitude;
+    }
+
+    private void CheckAndDestroyOiseau(){
         if (transform.position.x <= positionMaxX){
-            Destroy(gameObject);
+            DestroyOiseau();
         }
     }
+
+    private void DestroyOiseau(){
+        Destroy(gameObject);
+        PlayDestroySound();
+        PlayDestroyVFX();
+    }
+
+    private void PlayDestroySound(){
+        // Intégration des sons
+        // TODO: Ajouter le code pour jouer un son de destruction de l'oiseau
+    }
+
+    private void PlayDestroyVFX(){
+        // Intégration des VFX
+        // TODO: Ajouter le code pour jouer un effet visuel de destruction de l'oiseau
+    }
 }
+
+
