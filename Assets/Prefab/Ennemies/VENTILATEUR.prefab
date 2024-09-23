@@ -4879,8 +4879,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f452353bc556c8408aae309c7daa799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushForce: 10
-  colliderLengthY: 5
+  pushForce: 15
+  colliderLengthY: 30
   "pouss\xE9eGauche": 0
   "pouss\xE9eHaut": 1
   "pouss\xE9eBas": 0
