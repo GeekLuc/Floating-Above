@@ -60,7 +60,7 @@ public class Death : MonoBehaviour{
         }
     }
 
-    private void TeleportPlayerToCheckpoint(){
+    public void TeleportPlayerToCheckpoint(){
         if (player != null && checkpoints.Length > 0){
             Vector3 teleportPosition = GetLastUnlockedCheckpointPosition();
             player.transform.position = teleportPosition;
