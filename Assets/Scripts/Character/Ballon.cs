@@ -39,6 +39,12 @@ public class Ballon : MonoBehaviour
     public Coroutine fallCoroutine;
     private float lastInflateTime = 0f;
 
+    //VFX
+    [SerializeField] ParticleSystem _inflateVFX;
+    [SerializeField] ParticleSystem _deflateVFX;
+    [SerializeField] Animator _playerAnimator;
+    [SerializeField] Animator _ballonAnimator;
+
     void Update()
     {
         HandleInput();
@@ -76,11 +82,14 @@ public class Ballon : MonoBehaviour
         ScaleTime += Time.deltaTime;
         lastInflateTime = Time.time;
         // Intégration des VFX
-        // TODO: Ajouter des animations ou VFX pour l'inflation
+        _playerAnimator.SetBool("IsInflating", true);
+        _inflateVFX.Play();
+        // Le vfx ne se lance que quand le joueur est en l'air, et pas quand il gonfle le ballon au sol
     }
 
     private void Deflate(float deflateMultiplier)
     {
+
         isInflating = false;
         ScaleTime -= Time.deltaTime * deflateMultiplier;
 
@@ -97,6 +106,10 @@ public class Ballon : MonoBehaviour
             transform.position += Vector3.down * fallSpeedEnBallon * deflateMultiplier * Time.deltaTime;
         }
         // Intégration des VFX
+        _playerAnimator.SetBool("IsInflating", false);
+        _playerAnimator.SetBool("IsFloating", true);
+        _inflateVFX.Stop();
+        _deflateVFX.Play();
         // TODO: Ajouter des animations ou VFX pour le dégonflage
     }
 
@@ -105,6 +118,11 @@ public class Ballon : MonoBehaviour
         while (!isTouchingGround)
         {
             transform.position += Vector3.down * emptyFallSpeed * Time.deltaTime;
+
+            // VFX
+            _playerAnimator.SetBool("IsFalling", true);
+            _playerAnimator.SetBool("IsFloating", false);
+
             yield return null;
         }
         fallCoroutine = null;
@@ -117,6 +135,10 @@ public class Ballon : MonoBehaviour
             isFlying = true;
             flyCoroutine = StartCoroutine(FlyCoroutine());
         }
+
+        // VFX
+        _playerAnimator.SetBool("IsFloating", true);
+        _ballonAnimator.SetBool("IsFloating", false);
     }
 
     private IEnumerator FlyCoroutine()
@@ -218,5 +240,7 @@ public class Ballon : MonoBehaviour
             flyCoroutine = null;
         }
         isFlying = false;
+        // VFX
+        _playerAnimator.SetBool("IsFloating", false);
     }
 }

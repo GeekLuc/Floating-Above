@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.35873622, g: 0.3593927, b: 0.3602221, a: 1}
+  m_IndirectSpecularColor: {r: 0.14302847, g: 0.14415504, b: 0.14655328, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -39890,6 +39890,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CHECKPOINT Depart
       objectReference: {fileID: 0}
+    - target: {fileID: 7673436172773062762, guid: e0e8af7b5eae75544b5d4bc4df18d5c6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -55211,7 +55216,7 @@ GameObject:
   - component: {fileID: 515259628}
   - component: {fileID: 515259627}
   m_Layer: 0
-  m_Name: BlowingIn
+  m_Name: Inflate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55321,7 +55326,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -80712,6 +80717,7 @@ Transform:
   - {fileID: 26981783}
   - {fileID: 1929130354}
   - {fileID: 1501135603}
+  - {fileID: 1978053143}
   - {fileID: 515259626}
   m_Father: {fileID: 1908798428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -96173,8 +96179,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.2
+      scalar: 1
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -96756,7 +96762,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -100709,7 +100715,7 @@ Transform:
   m_GameObject: {fileID: 1501135600}
   serializedVersion: 2
   m_LocalRotation: {x: -0.99802077, y: -0, z: -0, w: 0.06288606}
-  m_LocalPosition: {x: 0, y: -0.243, z: -0.276}
+  m_LocalPosition: {x: 0.249, y: -0.255, z: -0.182}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -120684,16 +120690,18 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 5f7c8fabc6708b241bd612972c2503bd, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: be297f5971475204aa32219d64b943f5,
-        type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 1978053143}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be297f5971475204aa32219d64b943f5, type: 3}
 --- !u!4 &1793433342 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: be297f5971475204aa32219d64b943f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1793433341}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1793433343 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: be297f5971475204aa32219d64b943f5,
     type: 3}
   m_PrefabInstance: {fileID: 1793433341}
   m_PrefabAsset: {fileID: 0}
@@ -130523,6 +130531,10 @@ MonoBehaviour:
   GarderAir: 114
   Descendre: 116
   isFlying: 0
+  _inflateVFX: {fileID: 515259628}
+  _deflateVFX: {fileID: 1978053145}
+  _playerAnimator: {fileID: 1793433343}
+  _ballonAnimator: {fileID: 2138750569}
 --- !u!136 &1908798432
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -135629,7 +135641,7 @@ GameObject:
   - component: {fileID: 1978053145}
   - component: {fileID: 1978053144}
   m_Layer: 0
-  m_Name: Dusttrailing
+  m_Name: Deflate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135643,12 +135655,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1978053142}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.30869147, y: -0.6361679, z: -0.6361679, w: 0.30869147}
-  m_LocalPosition: {x: -0.02, y: 0.671, z: 0.33}
+  m_LocalRotation: {x: -0.7058736, y: 0.04174283, z: 0.04174283, w: 0.7058736}
+  m_LocalPosition: {x: 0.23443127, y: -0.20900011, z: -0.22134425}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1793433342}
+  m_Father: {fileID: 1185209982}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!199 &1978053144
 ParticleSystemRenderer:
@@ -135976,8 +135988,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 0.5
+      scalar: 2
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:

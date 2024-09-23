@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: fedbd9de9bfbad149b1cffb3df54dda0
+guid: 01930c2b075a63548aa59552d9b71779
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects: {}
   materials:
-    materialImportMode: 0
+    materialImportMode: 2
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -18,17 +18,16 @@ ModelImporter:
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
-      copied configuration does not match position in animation file:\n\t'mixamorig:LeftToeBase'
-      : position error = 67.818764 mm\n\t'mixamorig:RightToeBase' : position error
-      = 86.233818 mm\n\t'mixamorig:Spine1' : position error = 44.434746 mm\n"
+      copied configuration does not match position in animation file:\n\t'mixamorig:RightToeBase'
+      : position error = 24.026178 mm\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'mixamorig:LeftToeBase' has translation
       animation that will be discarded.\n\t'mixamorig:RightToeBase' has translation
       animation that will be discarded.\n\t'mixamorig:Spine' has scale animation
-      that will be discarded.\n\t'mixamorig:Spine1' has translation animation that
-      will be discarded.\n\t'mixamorig:Head' has scale animation that will be discarded.\n"
+      that will be discarded.\n\t'mixamorig:Head' has scale animation that will be
+      discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -42,11 +41,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: FallImpact
+      name: Dos
       takeName: Take 001
       internalID: 1827226128182048838
-      firstFrame: 1
-      lastFrame: 58
+      firstFrame: 0
+      lastFrame: 120
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -56,11 +55,11 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
-      loopBlendPositionY: 1
+      loopBlendPositionY: 0
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
+      keepOriginalOrientation: 0
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -69,7 +68,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0.96
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []

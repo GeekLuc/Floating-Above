@@ -9884,7 +9884,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 594441dfc118abf46a6829316059d2e2,
         type: 3}
       propertyPath: m_Name
-      value: CHECKPOINT
+      value: CheckPoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -9928,6 +9928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb751ac0ec9e5294f8e1cb125ba3ddc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _vfx: {fileID: 1071402255791312684}
 --- !u!1001 &9120802271694161965
 PrefabInstance:
   m_ObjectHideFlags: 0

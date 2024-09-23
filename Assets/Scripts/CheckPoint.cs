@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour{
     private bool isUnlocked = false;
+    [SerializeField] ParticleSystem _vfx;
 
     public void CheckIfPlayerPassed(GameObject player){
         if (HasPlayerPassed(player)){
@@ -40,7 +41,8 @@ public class CheckPoint : MonoBehaviour{
 
     private void PlayCheckpointUnlockVFX(){
         // Intégration des VFX
-        // TODO: Ajouter le code pour jouer un effet visuel de déverrouillage du checkpoint
+        _vfx.Play();
+        //Se répète en boucle si on reste sur le checkpoint?
     }
 }
 
