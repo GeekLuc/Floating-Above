@@ -50,13 +50,17 @@ public class Ballon : MonoBehaviour
         HandleInput();
         UpdateScale();
         wasInflating = isInflating;
+
+        print(_playerAnimator.GetBool("IsFloating"));
     }
 
     private void HandleInput()
     {
         if (isTouchingGround && Input.GetKey(GonflerBallon))
         {
+            _playerAnimator.SetBool("HasFallen", false);
             _playerAnimator.SetBool("IsInflating", true);
+            _playerAnimator.SetBool("IsFloating", false);
             Inflate();
         }
         else
@@ -252,8 +256,9 @@ public class Ballon : MonoBehaviour
         }
         isFlying = false;
         // VFX
-        _playerAnimator.SetBool("HasFallen", true);
+        //_playerAnimator.SetBool("HasFallen", true);
         _playerAnimator.SetBool("IsFloating", false);
         _ballonAnimator.SetBool("IsFloating", false);
+        _playerAnimator.SetBool("HasFallen", false);
     }
 }
