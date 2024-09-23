@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.36149487, g: 0.36176977, b: 0.36228982, a: 1}
+  m_IndirectSpecularColor: {r: 0.09032169, g: 0.0938577, b: 0.098920666, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -130467,7 +130467,7 @@ MonoBehaviour:
   DelayBallon: 1.5
   GonflerBallon: 32
   GarderAir: 114
-  Descendre: 116
+  Descendre: 0
   isFlying: 0
   _inflateVFX: {fileID: 515259628}
   _deflateVFX: {fileID: 1978053145}
