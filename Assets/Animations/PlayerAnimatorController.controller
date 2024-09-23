@@ -83,9 +83,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: IsInflating
-    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: HasFallen
     m_EventTreshold: 0
@@ -435,10 +432,7 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: IsFloating
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1133271601221368550}
   m_Solo: 0
@@ -536,28 +530,28 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -2802943377297127600}
-    m_Position: {x: -250, y: 110, z: 0}
+    m_Position: {x: -250, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4207359642590468524}
-    m_Position: {x: 20, y: 350, z: 0}
+    m_Position: {x: 370, y: 470, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2518385746040215773}
-    m_Position: {x: 20, y: 420, z: 0}
+    m_Position: {x: 370, y: 540, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1133271601221368550}
-    m_Position: {x: 20, y: 270, z: 0}
+    m_Position: {x: 370, y: 390, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7448087072215529322}
-    m_Position: {x: 370, y: 350, z: 0}
+    m_Position: {x: 370, y: 250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4967425451783063809}
-    m_Position: {x: 370, y: 270, z: 0}
+    m_Position: {x: 370, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1928941125856122479}
-    m_Position: {x: 370, y: 420, z: 0}
+    m_Position: {x: 370, y: 330, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1837322083854748115}
-    m_Position: {x: 370, y: 110, z: 0}
+    m_Position: {x: 30, y: 350, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions:
