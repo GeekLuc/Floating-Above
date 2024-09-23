@@ -40210,8 +40210,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _globalVolume: {fileID: 832575518}
   _fastSnow: {fileID: 541588146}
-  _stormDuration: 5
-  _intervalBetweenStorms: 10
+  DurationStorm: 5
+  IntervalStorm: 5
 --- !u!4 &377615179
 Transform:
   m_ObjectHideFlags: 0
@@ -60883,12 +60883,12 @@ PrefabInstance:
     - target: {fileID: 2687632714884336191, guid: 9885753c073f2314eb17b07b7b73ab78,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -26.679985
+      value: -26.5
       objectReference: {fileID: 0}
     - target: {fileID: 2687632714884336191, guid: 9885753c073f2314eb17b07b7b73ab78,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.4924097
+      value: 6.57
       objectReference: {fileID: 0}
     - target: {fileID: 2687632714884336191, guid: 9885753c073f2314eb17b07b7b73ab78,
         type: 3}

@@ -8,6 +8,8 @@ public class SnowStorm : MonoBehaviour
 {
     [SerializeField] Volume _globalVolume;
     [SerializeField] ParticleSystem _fastSnow;
+    [SerializeField] float DurationStorm = 5f;
+    [SerializeField] float IntervalStorm = 5f;
     Vignette _vignette;
     float _vignetteIntensityBase = 0.2f;
     float _vignetteIntensityStorm = 0.8f;
@@ -18,7 +20,6 @@ public class SnowStorm : MonoBehaviour
     float _currentTextureValue;
     float _currentSkyValue;
 
-
     void Start()
     {
         _currentSkyValue = 0f;
@@ -28,15 +29,18 @@ public class SnowStorm : MonoBehaviour
         _globalVolume.profile.TryGet(out Vignette _vignette);
         if (_globalVolume.profile.TryGet(out Vignette vignette))
         {
-
             _vignette.intensity.value = _vignetteIntensityBase;
         }
         _storm = false;
+
+        // Appel de la méthode pour démarrer l'intervalle de tempête
+        StartCoroutine(StartStormInterval());
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        /*if (Input.GetKeyDown(KeyCode.Space))
+        {
             if (_storm)
             {
                 _storm = false;
@@ -44,8 +48,8 @@ public class SnowStorm : MonoBehaviour
             else
             {
                 _storm = true;
-            } 
-        }
+            }
+        }*/
 
         if (_storm)
         {
@@ -91,5 +95,18 @@ public class SnowStorm : MonoBehaviour
             }
             _fastSnow.Stop();
         }
+    }
+
+    IEnumerator StartStormInterval(){
+        yield return new WaitForSeconds(IntervalStorm);
+        _storm = true;
+        StartCoroutine(StartStormDuration());
+    }
+
+    IEnumerator StartStormDuration()
+    {
+        yield return new WaitForSeconds(DurationStorm);
+        _storm = false;
+        StartCoroutine(StartStormInterval());
     }
 }
