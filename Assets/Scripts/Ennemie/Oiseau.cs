@@ -9,7 +9,7 @@ using UnityEngine;
 public class Oiseau : MonoBehaviour
 {
     public float vitesse = 5.0f;
-    public float positionMaxX = 10.0f;
+    public float positionMinX = -50.0f; // Limite négative
     public float amplitude = 1.0f;
     public float frequence = 1.0f;
 
@@ -34,7 +34,7 @@ public class Oiseau : MonoBehaviour
 
     private void MoveOiseau()
     {
-        transform.Translate(Vector3.forward * vitesse * Time.deltaTime);
+        transform.Translate(Vector3.forward * vitesse * Time.deltaTime); // Déplacement vers la gauche
     }
 
     private void UpdateVerticalPosition()
@@ -50,8 +50,7 @@ public class Oiseau : MonoBehaviour
 
     private void CheckAndDestroyOiseau()
     {
-        if (transform.position.x >= positionMaxX)
-        {
+        if (transform.position.x <= positionMinX){
             DestroyOiseau();
         }
     }
