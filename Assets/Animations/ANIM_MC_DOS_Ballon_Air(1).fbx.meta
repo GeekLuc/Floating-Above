@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 3fa18bcaa7948b348afae0ac9ece1eb5
+guid: f769ba3bd9344a64fa4b641afa5e4769
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects: {}
   materials:
-    materialImportMode: 2
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -18,8 +18,9 @@ ModelImporter:
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
-      copied configuration does not match position in animation file:\n\t'mixamorig:RightToeBase'
-      : position error = 24.026178 mm\n"
+      copied configuration does not match position in animation file:\n\t'mixamorig:LeftToeBase'
+      : position error = 129.944748 mm\n\t'mixamorig:RightToeBase' : position error
+      = 123.699760 mm\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
@@ -41,11 +42,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Turn
+      name: Back
       takeName: Take 001
       internalID: 1827226128182048838
-      firstFrame: 0
-      lastFrame: 120
+      firstFrame: 18
+      lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

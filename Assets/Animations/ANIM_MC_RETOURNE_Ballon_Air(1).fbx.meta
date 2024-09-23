@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 01930c2b075a63548aa59552d9b71779
+guid: a3f08a1d33b678c48a706e3b041712f7
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects: {}
   materials:
-    materialImportMode: 2
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -41,11 +41,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Dos
+      name: Turn
       takeName: Take 001
       internalID: 1827226128182048838
       firstFrame: 0
-      lastFrame: 120
+      lastFrame: 18
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

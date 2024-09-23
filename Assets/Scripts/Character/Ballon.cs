@@ -56,6 +56,7 @@ public class Ballon : MonoBehaviour
     {
         if (isTouchingGround && Input.GetKey(GonflerBallon))
         {
+            _playerAnimator.SetBool("IsInflating", true);
             Inflate();
         }
         else
@@ -71,8 +72,6 @@ public class Ballon : MonoBehaviour
             HandleDeflation();
         }
     }
-
-
 
     private void HandleDeflation(){
         if (Time.time - lastInflateTime >= DelayBallon){
@@ -122,7 +121,6 @@ public class Ballon : MonoBehaviour
         // TODO: Ajouter des animations ou VFX pour le dégonflage
     }
 
-
     public IEnumerator FallVertically() // Rendre public
     {
         while (!isTouchingGround)
@@ -135,6 +133,8 @@ public class Ballon : MonoBehaviour
 
             yield return null;
         }
+        _playerAnimator.SetBool("HasFallen", true);
+        _playerAnimator.SetBool("IsFalling", false);
         fallCoroutine = null;
     }
 
@@ -147,8 +147,9 @@ public class Ballon : MonoBehaviour
         }
 
         // VFX
+        _playerAnimator.SetBool("HasFallen", false);
         _playerAnimator.SetBool("IsFloating", true);
-        _ballonAnimator.SetBool("IsFloating", false);
+        _ballonAnimator.SetBool("IsFloating", true);
     }
 
     private IEnumerator FlyCoroutine()
@@ -251,6 +252,8 @@ public class Ballon : MonoBehaviour
         }
         isFlying = false;
         // VFX
+        _playerAnimator.SetBool("HasFallen", true);
         _playerAnimator.SetBool("IsFloating", false);
+        _ballonAnimator.SetBool("IsFloating", false);
     }
 }
