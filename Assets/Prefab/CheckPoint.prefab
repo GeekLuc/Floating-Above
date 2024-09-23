@@ -9929,6 +9929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _vfx: {fileID: 1071402255791312684}
+  Drapeau: {fileID: 7589142574322586793}
 --- !u!1001 &9120802271694161965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10022,6 +10023,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33a84243dce24c54ab3265d8e359c9e7, type: 3}
+--- !u!23 &7589142574322586793 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 33a84243dce24c54ab3265d8e359c9e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 9120802271694161965}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8726041121799892934 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 33a84243dce24c54ab3265d8e359c9e7,
