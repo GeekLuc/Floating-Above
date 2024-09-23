@@ -58,7 +58,7 @@ public class Ballon : MonoBehaviour
         {
             Inflate();
         }
-        else if (!Input.GetKey(GonflerBallon))
+        else
         {
             HandleDeflation();
             if (wasInflating && !hasReachedMaxHeight && !isFlying)
@@ -66,30 +66,39 @@ public class Ballon : MonoBehaviour
                 Fly();
             }
         }
-    }
 
-    private void HandleDeflation()
-    {
-        if (Time.time - lastInflateTime >= DelayBallon)
-        {
-            Deflate(Input.GetKey(GarderAir) ? slowDeflateMultiplier : fastDeflateMultiplier);
+        if (!isTouchingGround){
+            HandleDeflation();
         }
     }
 
-    private void Inflate()
-    {
+
+
+    private void HandleDeflation(){
+        if (Time.time - lastInflateTime >= DelayBallon){
+            Deflate(Input.GetKey(GarderAir) ? slowDeflateMultiplier : fastDeflateMultiplier);
+        }else{
+            if (_inflateVFX.isPlaying){
+                _inflateVFX.Stop();
+            }
+        }
+    }
+
+    private void Inflate(){
         isInflating = true;
         ScaleTime += Time.deltaTime;
         lastInflateTime = Time.time;
+
         // Intégration des VFX
         _playerAnimator.SetBool("IsInflating", true);
-        _inflateVFX.Play();
-        // Le vfx ne se lance que quand le joueur est en l'air, et pas quand il gonfle le ballon au sol
+        if (!_inflateVFX.isPlaying)
+        {
+            _inflateVFX.Play();
+        }
     }
 
     private void Deflate(float deflateMultiplier)
     {
-
         isInflating = false;
         ScaleTime -= Time.deltaTime * deflateMultiplier;
 
@@ -112,6 +121,7 @@ public class Ballon : MonoBehaviour
         _deflateVFX.Play();
         // TODO: Ajouter des animations ou VFX pour le dégonflage
     }
+
 
     public IEnumerator FallVertically() // Rendre public
     {
