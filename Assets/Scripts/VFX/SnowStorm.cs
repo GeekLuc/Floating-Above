@@ -20,6 +20,10 @@ public class SnowStorm : MonoBehaviour
     float _currentTextureValue;
     float _currentSkyValue;
 
+    [SerializeField] AudioSource _startSFX;
+    [SerializeField] AudioSource _endSFX;
+    [SerializeField] AudioSource _duringSFX;
+
     void Start()
     {
         _currentSkyValue = 0f;
@@ -99,6 +103,8 @@ public class SnowStorm : MonoBehaviour
 
     IEnumerator StartStormInterval(){
         yield return new WaitForSeconds(IntervalStorm);
+        _startSFX.Play();
+        _duringSFX.Play();
         _storm = true;
         StartCoroutine(StartStormDuration());
     }
@@ -106,6 +112,8 @@ public class SnowStorm : MonoBehaviour
     IEnumerator StartStormDuration()
     {
         yield return new WaitForSeconds(DurationStorm);
+        _duringSFX.Stop();
+        _endSFX.Play();
         _storm = false;
         StartCoroutine(StartStormInterval());
     }

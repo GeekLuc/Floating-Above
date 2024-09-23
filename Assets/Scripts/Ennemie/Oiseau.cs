@@ -15,6 +15,8 @@ public class Oiseau : MonoBehaviour
 
     private float startY;
 
+    [SerializeField] AudioSource _sfx;
+
     void Start()
     {
         InitializeStartY();
@@ -71,6 +73,7 @@ public class Oiseau : MonoBehaviour
     private void PlayDestroyVFX()
     {
         // Intégration des VFX
+        _sfx.Play();
         // TODO: Ajouter le code pour jouer un effet visuel de destruction de l'oiseau
     }
 }

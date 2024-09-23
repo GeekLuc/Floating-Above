@@ -62,7 +62,6 @@ public class Ballon : MonoBehaviour
     {
         if (isTouchingGround && Input.GetKey(GonflerBallon))
         {
-            
             _playerAnimator.SetBool("HasFallen", false);
             _playerAnimator.SetBool("IsInflating", true);
             _playerAnimator.SetBool("IsFloating", false);

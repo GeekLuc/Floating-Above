@@ -12,6 +12,8 @@ public class EndLevel : MonoBehaviour
     public float fadeDuration = 2f; // Durée du fondu en noir (identique à moveDuration)
 
     private bool isCoroutineRunning = false;
+    [SerializeField] Animator _playerAnimator;
+    [SerializeField] AudioSource _victorySFX;
 
     void Update()
     {
@@ -34,6 +36,8 @@ public class EndLevel : MonoBehaviour
     {
         isCoroutineRunning = true;
         yield return new WaitUntil(() => !playerBallon.isFlying);
+        _playerAnimator.SetBool("IsEnd", true);
+        _victorySFX.Play();
         yield return MovePlayerRight();
         yield return FadeToBlack();
         yield return new WaitForSeconds(delayBeforeSceneChange);

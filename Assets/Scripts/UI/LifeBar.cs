@@ -13,6 +13,7 @@ public class LifeBar : MonoBehaviour{
     [SerializeField] AudioSource _hitSFX;
     [SerializeField] ParticleSystem _hitVFX;
     [SerializeField] AudioSource _deathSFX;
+    [SerializeField] AudioSource _jingleSFX;
 
     void Start(){
         InitializeHearts();
@@ -35,6 +36,7 @@ public class LifeBar : MonoBehaviour{
             PlayDamageVFX();
             if (currentLife < 1){
                 _deathSFX.Play();
+                _jingleSFX.Play();
                 Death();
             }
         }

@@ -13,6 +13,8 @@ public class CheckPoint : MonoBehaviour
     private Color _defaultColor3;
     private Color _defaultColor4;
 
+    [SerializeField] AudioSource _sfx;
+
     private void Start()
     {
         // Sauvegarder les couleurs par défaut
@@ -61,6 +63,7 @@ public class CheckPoint : MonoBehaviour
     private void PlayCheckpointUnlockVFX()
     {
         _vfx.Play();
+        _sfx.Play();
     }
 
     private void UpdateCheckpointColor()

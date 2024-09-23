@@ -14,6 +14,8 @@ public class Tireur : MonoBehaviour{
 
     private float nextFireTime = 0f;
 
+    [SerializeField] AudioSource _sfx;
+
     void Update(){
         HandleShooting();
     }
@@ -26,6 +28,7 @@ public class Tireur : MonoBehaviour{
     }
 
     private void Shoot(){
+        _sfx.Play();
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.velocity = Vector3.up * bulletSpeed;
