@@ -13,6 +13,7 @@ public class EndLevel : MonoBehaviour
 
     private bool isCoroutineRunning = false;
     [SerializeField] Animator _playerAnimator;
+    [SerializeField] Animator _doorAnimator;
     [SerializeField] AudioSource _victorySFX;
 
     void Update()
@@ -37,6 +38,7 @@ public class EndLevel : MonoBehaviour
         isCoroutineRunning = true;
         yield return new WaitUntil(() => !playerBallon.isFlying);
         _playerAnimator.SetBool("IsEnd", true);
+        _doorAnimator.SetBool("Door", true);
         _victorySFX.Play();
         yield return MovePlayerRight();
         yield return FadeToBlack();
