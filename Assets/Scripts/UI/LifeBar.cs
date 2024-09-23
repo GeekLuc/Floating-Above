@@ -10,6 +10,9 @@ using UnityEngine.SceneManagement;
 public class LifeBar : MonoBehaviour{
     public GameObject[] hearts;
     private int currentLife;
+    [SerializeField] AudioSource _hitSFX;
+    [SerializeField] ParticleSystem _hitVFX;
+    [SerializeField] AudioSource _deathSFX;
 
     void Start(){
         InitializeHearts();
@@ -31,6 +34,7 @@ public class LifeBar : MonoBehaviour{
             PlayDamageSound();
             PlayDamageVFX();
             if (currentLife < 1){
+                _deathSFX.Play();
                 Death();
             }
         }
@@ -57,11 +61,13 @@ public class LifeBar : MonoBehaviour{
 
     private void PlayDamageSound(){
         // Intégration des sons
+        _hitSFX.Play();
         // TODO: Ajouter le code pour jouer un son de dommage
     }
 
     private void PlayDamageVFX(){
         // Intégration des VFX
+        _hitVFX.Play();
         // TODO: Ajouter le code pour jouer un effet visuel de dommage
     }
 }

@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour{
     private PieceBar pieceBar;
+    [SerializeField] ParticleSystem _pickUpVFX;
 
     void Start(){
         pieceBar = FindObjectOfType<PieceBar>();
@@ -40,6 +41,7 @@ public class PickUp : MonoBehaviour{
 
     private void PlayCollectionVFX(){
         // Intégration des VFX
+        _pickUpVFX.Play();
         // TODO: Ajouter le code pour jouer un effet visuel de collecte de pièce
     }
 }

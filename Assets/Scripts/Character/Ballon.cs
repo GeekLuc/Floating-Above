@@ -42,22 +42,27 @@ public class Ballon : MonoBehaviour
     //VFX
     [SerializeField] ParticleSystem _inflateVFX;
     [SerializeField] ParticleSystem _deflateVFX;
+    [SerializeField] ParticleSystem _crashVFX;
     [SerializeField] Animator _playerAnimator;
     [SerializeField] Animator _ballonAnimator;
+
+    //SFX
+    [SerializeField] AudioSource _inflateSFX;
+    [SerializeField] AudioSource _deflateSFX;
+    
 
     void Update()
     {
         HandleInput();
         UpdateScale();
         wasInflating = isInflating;
-
-        print(_playerAnimator.GetBool("IsFloating"));
     }
 
     private void HandleInput()
     {
         if (isTouchingGround && Input.GetKey(GonflerBallon))
         {
+            
             _playerAnimator.SetBool("HasFallen", false);
             _playerAnimator.SetBool("IsInflating", true);
             _playerAnimator.SetBool("IsFloating", false);
@@ -82,7 +87,9 @@ public class Ballon : MonoBehaviour
             Deflate(Input.GetKey(GarderAir) ? slowDeflateMultiplier : fastDeflateMultiplier);
         }else{
             if (_inflateVFX.isPlaying){
+                _deflateSFX.Play();
                 _inflateVFX.Stop();
+                _inflateSFX.Stop();
             }
         }
     }
@@ -96,17 +103,20 @@ public class Ballon : MonoBehaviour
         _playerAnimator.SetBool("IsInflating", true);
         if (!_inflateVFX.isPlaying)
         {
+            _inflateSFX.Play();
             _inflateVFX.Play();
         }
     }
 
     private void Deflate(float deflateMultiplier)
     {
+        
         isInflating = false;
         ScaleTime -= Time.deltaTime * deflateMultiplier;
 
         if (ScaleTime == 0)
         {
+            //_inflateSFX.Stop();
             StopFlying();
             if (fallCoroutine == null)
             {
@@ -236,6 +246,8 @@ public class Ballon : MonoBehaviour
                 StopCoroutine(fallCoroutine);
                 fallCoroutine = null;
             }
+
+            _crashVFX.Play();
         }
     }
 
