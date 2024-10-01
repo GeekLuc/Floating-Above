@@ -1,5 +1,6 @@
 # Floating Above
 Unity project of a game created during a back-to-school game jam in B3JV at HEAJ
+https://geekluc.itch.io/floating-above
 
 # Luca Rougefort / GeekLuc
 ## Etudiant B3JV programmation de jeux vidéo HEAJ
